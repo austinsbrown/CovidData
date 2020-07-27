@@ -1,9 +1,32 @@
 
 ```{r}
-library(ggplot2)
+  library(ggplot2)
 ```
 
 ```{r}
+  data <- readxl::read_xlsx("Public-Dataset-Daily-County-Age-Group.XLSX")
+```
 
+```{r}
+  
+  bedford_data <- data[which(data$COUNTY == "Bedford"),]        
+  
+  bedford_graph <- ggplot(bedford_data, aes(DATE, CASE_COUNT)) +
+  geom_jitter(aes(col = AGE_GROUP), size = 1) +
+  labs(title="Age Data for Bedford County", col="Age Range") + 
+  xlab("Date") + ylab("Case Count")
+  
+  bedford_graph
+```
+
+```{r}
+  rutherford_data <- data[which(data$COUNTY == "Rutherford"),]
+
+  rutherford_graph <- ggplot(rutherford_data, aes(DATE, CASE_COUNT)) +
+  geom_jitter(aes(col = AGE_GROUP)) +
+  labs(title="Age Data for Rutherford County", col="Age Range") + 
+  xlab("Date") + ylab("Case Count")
+  
+  rutherford_graph
 ```
 
