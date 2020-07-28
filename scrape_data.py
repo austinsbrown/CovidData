@@ -17,5 +17,5 @@ xlsx_links = driver.find_elements_by_css_selector("a[href*='XLSX']")            
 for link in xlsx_links:                                                                 # download everything
     link.click()
 
-time.sleep(5)
+time.sleep(15)
 driver.quit()                                                                           # close the browser
