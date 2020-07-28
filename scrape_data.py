@@ -1,13 +1,14 @@
 from selenium import webdriver
 from requests import get
 import os
-import time
+from time import sleep
 
 tn_url = "https://www.tn.gov/health/cedep/ncov/data/downloadable-datasets.html"         # default url
 driver_path = os.getcwd() + "/chromedriver"                                             # path to chrome driver
 download_path = os.getcwd()                                                             # path to download directory
 
 chromeOptions = webdriver.ChromeOptions()                                               # configure chrome
+chromeOptions.headless = True
 prefs = {"download.default_directory" : download_path}                                  # set download path
 chromeOptions.add_experimental_option("prefs",prefs)                                      
 driver = webdriver.Chrome(executable_path=driver_path, chrome_options=chromeOptions)    # initialize chrome driver
@@ -17,5 +18,5 @@ xlsx_links = driver.find_elements_by_css_selector("a[href*='XLSX']")            
 for link in xlsx_links:                                                                 # download everything
     link.click()
 
-time.sleep(15)
+sleep(30)                                                                               # wait for downloads to complete
 driver.quit()                                                                           # close the browser
