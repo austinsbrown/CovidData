@@ -4,29 +4,38 @@
 ```
 
 ```{r}
-  data <- readxl::read_xlsx("Public-Dataset-Daily-County-Age-Group.XLSX")
+  age_data <- readxl::read_xlsx("Public-Dataset-Daily-County-Age-Group.XLSX")
 ```
 
 ```{r}
   
-  bedford_data <- data[which(data$COUNTY == "Bedford"),]        
+  bedford_data <- age_data[which(age_data$COUNTY == "Bedford"),]                         
   
   bedford_graph <- ggplot(bedford_data, aes(DATE, CASE_COUNT)) +
   geom_jitter(aes(col = AGE_GROUP), size = 1) +
-  labs(title="Age Data for Bedford County", col="Age Range") + 
-  xlab("Date") + ylab("Case Count")
-  
+  labs(col="Age Range") + 
+  xlab("Date") + ylab("Case Count") + ggtitle("Age Data for Bedford County") +
+  theme(plot.title = element_text(hjust = 0.5))
   bedford_graph
-```
-
-```{r}
-  rutherford_data <- data[which(data$COUNTY == "Rutherford"),]
-
+  
+  
+  rutherford_data <- age_data[which(age_data$COUNTY == "Rutherford"),]
+  
   rutherford_graph <- ggplot(rutherford_data, aes(DATE, CASE_COUNT)) +
   geom_jitter(aes(col = AGE_GROUP)) +
-  labs(title="Age Data for Rutherford County", col="Age Range") + 
-  xlab("Date") + ylab("Case Count")
-  
+  labs(col="Age Range") + 
+  xlab("Date") + ylab("Case Count") + ggtitle("Age Data for Rutherford County") +
+  theme(plot.title = element_text(hjust = 0.5))
   rutherford_graph
+  
+  
+  davidson_data <- age_data[which(age_data$COUNTY == "Davidson"),]
+  
+  davidson_graph <- ggplot(davidson_data, aes(DATE, CASE_COUNT)) +
+  geom_jitter(aes(col = AGE_GROUP)) + 
+  labs(col="Age Range") + 
+  xlab("Date") + ylab("Case Count") + ggtitle("Age Data for Davidson County") +
+  theme(plot.title = element_text(hjust = 0.5))
+  
+  davidson_graph
 ```
-
