@@ -6,6 +6,7 @@
 ```{r} 
   age_data <- readxl::read_xlsx("Public-Dataset-Daily-County-Age-Group.XLSX")      
   race_eth_data <- readxl::read_xlsx("Public-Dataset-RaceEthSex.XLSX")
+  hospitalization_data <- readxl::read_xlsx("Public-Dataset-Daily-Case-Info.XLSX")
 ```
 
 ```{r}
@@ -47,7 +48,7 @@
 ```{r}
   race_data <- race_eth_data[which(race_eth_data$Category == "RACE"),]
   
-  race_case_graph <- ggplot(race_data, aes(Date, Cat_CaseCount))+
+  race_case_graph <- ggplot(race_data, aes(Date, Cat_CaseCount)) +
   geom_jitter(aes(col = CAT_DETAIL)) + 
   labs(col = "Race") + xlab("Date") + ylab("Case Count") +
   ggtitle("Race Case Count") +
@@ -56,4 +57,24 @@
   race_case_graph
   
   
+```
+
+```{r}
+  hospitalization_data <- na.omit(hospitalization_data)
+
+  hos_graph <- ggplot(hospitalization_data, aes(DATE, NEW_HOSP)) +
+  geom_line(color="red") +
+  xlab("Date") + ylab("New Case Count") + 
+  ggtitle("New Hospitalizations Count") +
+  theme(plot.title = element_text(hjust = 0.5))
+  
+  hos_graph
+  
+  total_hos_graph <- ggplot(hospitalization_data, aes(DATE, TOTAL_HOSP)) +
+  geom_line(color="red") + 
+  xlab("Date") + ylab("Total Count") +
+  ggtitle("Total Hospitalizations Count") +
+  theme(plot.title = element_text(hjust = 0.5))
+  
+  total_hos_graph
 ```
