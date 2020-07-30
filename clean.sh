@@ -1,5 +1,6 @@
 rm CSV_FILES/*.XLSX
-rm PDF_FILES/*.crdownload
+rm CSV_FILES/*.crdownload
+rm PDF_FILES/*.pdf
 
 rmdir CSV_FILES 
 rmdir PDF_FILES
