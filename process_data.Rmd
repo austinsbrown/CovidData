@@ -20,7 +20,7 @@
   ggtitle("Age Data for Bedford County") +                                      # add centered title
   theme(plot.title = element_text(hjust = 0.5))
   
-  bedford_graph
+  ggsave("PDF_FILES/age_bedford.pdf", width = 15, height = 10)
   
   
   rutherford_data <- age_data[which(age_data$COUNTY == "Rutherford"),]
@@ -31,8 +31,9 @@
   xlab("Date") + ylab("Case Count") + 
     ggtitle("Age Data for Rutherford County") +
   theme(plot.title = element_text(hjust = 0.5))
-  rutherford_graph
   
+  ggsave("PDF_FILES/age_rutherford.pdf", width = 15, height = 10)
+
   
   davidson_data <- age_data[which(age_data$COUNTY == "Davidson"),]
   
@@ -42,7 +43,7 @@
   xlab("Date") + ylab("Case Count") + ggtitle("Age Data for Davidson County") +
   theme(plot.title = element_text(hjust = 0.5))
   
-  davidson_graph
+  ggsave("PDF_FILES/age_davidson.pdf", width = 15, height = 10)
 ```
 
 ```{r}
@@ -54,9 +55,7 @@
   ggtitle("Race Case Count") +
   theme(plot.title = element_text(hjust = 0.5))
   
-  race_case_graph
-  
-  
+  ggsave("PDF_FILES/race_case_count.pdf", width = 15, height = 10)
 ```
 
 ```{r}
@@ -68,7 +67,7 @@
   ggtitle("New Hospitalizations Count") +
   theme(plot.title = element_text(hjust = 0.5))
   
-  hos_graph
+  ggsave("PDF_FILES/new_hospitalizations.pdf", width = 15, height = 10)
   
   total_hos_graph <- ggplot(hospitalization_data, aes(DATE, TOTAL_HOSP)) +
   geom_line(color="red") + 
@@ -76,5 +75,9 @@
   ggtitle("Total Hospitalizations Count") +
   theme(plot.title = element_text(hjust = 0.5))
   
-  total_hos_graph
+  ggsave("PDF_FILES/total_hospitalizations.pdf", width = 15, height = 10)
+```
+
+```{r}
+  
 ```
