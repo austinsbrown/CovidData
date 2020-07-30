@@ -1,1 +1,2 @@
 rm *.XLSX
+rm *.crdownload
