@@ -4,6 +4,8 @@ from time import sleep
 
 if(not os.path.isdir("CSV_FILES")):                                                     # create directory for csv files if one does not exits
     os.mkdir("CSV_FILES")
+else:
+    os.system("rm CSV_FILES/*")                                                         # if it exists then rm all files
 
 if(not os.path.isdir("PDF_FILES")):                                                     # create directory for pdf files if one does not exits
     os.mkdir("PDF_FILES")
