@@ -1,11 +1,17 @@
 from selenium import webdriver
-from requests import get
 import os
 from time import sleep
 
+if(not os.path.isdir("CSV_FILES")):                                                     # create directory for csv files if one does not exits
+    os.mkdir("CSV_FILES")
+
+if(not os.path.isdir("PDF_FILES")):                                                     # create directory for pdf files if one does not exits
+    os.mkdir("PDF_FILES")
+
 tn_url = "https://www.tn.gov/health/cedep/ncov/data/downloadable-datasets.html"         # default url
 driver_path = os.getcwd() + "/chromedriver"                                             # path to chrome driver
-download_path = os.getcwd()                                                             # path to download directory
+download_path = os.getcwd() + "/CSV_FILES"                                              # path to download directory
+
 
 chromeOptions = webdriver.ChromeOptions()                                               # configure chrome
 chromeOptions.headless = True

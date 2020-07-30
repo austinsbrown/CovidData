@@ -4,9 +4,9 @@
 ```
 
 ```{r} 
-  age_data <- readxl::read_xlsx("Public-Dataset-Daily-County-Age-Group.XLSX")      
-  race_eth_data <- readxl::read_xlsx("Public-Dataset-RaceEthSex.XLSX")
-  hospitalization_data <- readxl::read_xlsx("Public-Dataset-Daily-Case-Info.XLSX")
+  age_data <- readxl::read_xlsx("CSV_FILES/Public-Dataset-Daily-County-Age-Group.XLSX")      
+  race_eth_data <- readxl::read_xlsx("CSV_FILES/Public-Dataset-RaceEthSex.XLSX")
+  hospitalization_data <- readxl::read_xlsx("CSV_FILES/Public-Dataset-Daily-Case-Info.XLSX")
 ```
 
 ```{r}
