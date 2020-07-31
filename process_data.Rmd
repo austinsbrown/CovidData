@@ -4,46 +4,26 @@
 ```
 
 ```{r} 
-  age_data <- readxl::read_xlsx("CSV_FILES/Public-Dataset-Daily-County-Age-Group.XLSX")      
+        
   race_eth_data <- readxl::read_xlsx("CSV_FILES/Public-Dataset-RaceEthSex.XLSX")
   hospitalization_data <- readxl::read_xlsx("CSV_FILES/Public-Dataset-Daily-Case-Info.XLSX")
 ```
 
 ```{r}
+  age_data <- readxl::read_xlsx("CSV_FILES/Public-Dataset-Daily-County-Age-Group.XLSX")
+  age_data <- age_data[which(age_data$COUNTY == "Bedford" |                    
+              age_data$COUNTY == "Rutherford" |
+              age_data$COUNTY == "Davidson"),]   
   
-  bedford_data <- age_data[which(age_data$COUNTY == "Bedford"),]                # extract bedford county data                     
-
-  bedford_graph <- ggplot(bedford_data, aes(DATE, CASE_COUNT)) +                # create base plot
-  geom_jitter(aes(col = AGE_GROUP), size = 1) +                                 # add jitter layer
-  labs(col="Age Range") +                                                       # add label for age range
-  xlab("Date") + ylab("Case Count") +                                           # add x and y labels
-  ggtitle("Age Data for Bedford County") +                                      # add centered title
+  age_graph <- ggplot(age_data, aes(DATE, CASE_COUNT)) +
+  geom_jitter(aes(col=AGE_GROUP)) + 
+  facet_wrap(~COUNTY, scales = "free") +
+  labs(col="Age Group") + xlab("Date") + ylab("Case Count") +
+  ggtitle("Cases By Age Group") + 
   theme(plot.title = element_text(hjust = 0.5))
   
-  ggsave("PDF_FILES/age_bedford.pdf", width = 15, height = 10)
-  
-  
-  rutherford_data <- age_data[which(age_data$COUNTY == "Rutherford"),]
-  
-  rutherford_graph <- ggplot(rutherford_data, aes(DATE, CASE_COUNT)) +
-  geom_jitter(aes(col = AGE_GROUP)) +
-  labs(col="Age Range") + 
-  xlab("Date") + ylab("Case Count") + 
-    ggtitle("Age Data for Rutherford County") +
-  theme(plot.title = element_text(hjust = 0.5))
-  
-  ggsave("PDF_FILES/age_rutherford.pdf", width = 15, height = 10)
-
-  
-  davidson_data <- age_data[which(age_data$COUNTY == "Davidson"),]
-  
-  davidson_graph <- ggplot(davidson_data, aes(DATE, CASE_COUNT)) +
-  geom_jitter(aes(col = AGE_GROUP)) + 
-  labs(col="Age Range") + 
-  xlab("Date") + ylab("Case Count") + ggtitle("Age Data for Davidson County") +
-  theme(plot.title = element_text(hjust = 0.5))
-  
-  ggsave("PDF_FILES/age_davidson.pdf", width = 15, height = 10)
+  ggsave("PDF_FILES/age_case_count.pdf", width = 14, height = 8)
+  age_graph
 ```
 
 ```{r}
@@ -76,6 +56,9 @@
   theme(plot.title = element_text(hjust = 0.5))
   
   ggsave("PDF_FILES/total_hospitalizations.pdf", width = 15, height = 10)
+  
+  hos_graph
+  total_hos_graph
 ```
 
 ```{r}
