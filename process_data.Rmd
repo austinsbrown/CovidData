@@ -4,8 +4,6 @@
 ```
 
 ```{r} 
-        
-  race_eth_data <- readxl::read_xlsx("CSV_FILES/Public-Dataset-RaceEthSex.XLSX")
   hospitalization_data <- readxl::read_xlsx("CSV_FILES/Public-Dataset-Daily-Case-Info.XLSX")
 ```
 
@@ -27,15 +25,23 @@
 ```
 
 ```{r}
-  race_data <- race_eth_data[which(race_eth_data$Category == "RACE"),]
+  new_case_data <- readxl::read_xlsx("CSV_FILES/Public-Dataset-Daily-Case-Info.XLSX")
+  new_case_data <- na.omit(new_case_data)
   
-  race_case_graph <- ggplot(race_data, aes(Date, Cat_CaseCount)) +
-  geom_jitter(aes(col = CAT_DETAIL)) + 
-  labs(col = "Race") + xlab("Date") + ylab("Case Count") +
-  ggtitle("Race Case Count") +
-  theme(plot.title = element_text(hjust = 0.5))
+  new_case_graph <- ggplot(new_case_data, aes(DATE, NEW_CASES)) +
+  geom_jitter(aes(color="red")) + geom_smooth(se = FALSE, method = lm) + 
+  xlab("Date") + ylab("New Case Count") +
+  ggtitle("New Cases") + 
+  theme(plot.title = element_text(hjust = 0.47), legend.position = "none")
   
-  ggsave("PDF_FILES/race_case_count.pdf", width = 15, height = 10)
+  new_death_graph <- ggplot(new_case_data, aes(DATE, NEW_DEATHS)) +
+  geom_jitter(aes(color="red")) + geom_smooth(se = FALSE, method = lm) + 
+  xlab("Date") + ylab("New Death Count") +
+  ggtitle("New Deaths") + 
+  theme(plot.title = element_text(hjust = 0.47), legend.position = "none")
+  
+  new_case_graph
+  new_death_graph
 ```
 
 ```{r}
@@ -62,5 +68,5 @@
 ```
 
 ```{r}
-  
+
 ```
