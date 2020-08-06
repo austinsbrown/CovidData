@@ -3,10 +3,6 @@
   library(ggplot2)
 ```
 
-```{r} 
-  hospitalization_data <- readxl::read_xlsx("CSV_FILES/Public-Dataset-Daily-Case-Info.XLSX")
-```
-
 ```{r}
   age_data <- readxl::read_xlsx("CSV_FILES/Public-Dataset-Daily-County-Age-Group.XLSX")
   age_data <- age_data[which(age_data$COUNTY == "Bedford" |                    
@@ -38,13 +34,14 @@
   geom_jitter(aes(color="red")) + geom_smooth(se = FALSE, method = lm) + 
   xlab("Date") + ylab("New Death Count") +
   ggtitle("New Deaths") + 
-  theme(plot.title = element_text(hjust = 0.47), legend.position = "none")
+  theme(plot.title = element_text(hjust = 0.47), legend.position = "none",)
   
   new_case_graph
   new_death_graph
 ```
 
 ```{r}
+  hospitalization_data <- readxl::read_xlsx("CSV_FILES/Public-Dataset-Daily-Case-Info.XLSX")
   hospitalization_data <- na.omit(hospitalization_data)
 
   hos_graph <- ggplot(hospitalization_data, aes(DATE, NEW_HOSP)) +
@@ -65,8 +62,4 @@
   
   hos_graph
   total_hos_graph
-```
-
-```{r}
-
 ```
